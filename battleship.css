@@ -1,0 +1,38 @@
+td {
+  height: 60px;
+  width:60px;
+  border-style: solid;
+  border-color: black;
+  border-width: 2px;
+  background-color: lightblue;
+  text-align: center;
+  font-weight: bold;
+}
+
+table {
+  margin-top: 10px;
+}
+
+#tableBoard {
+  margin-left: auto;
+  margin-right: auto;
+}
+h1,h4 {
+  text-align: center;
+}
+
+.miss {
+  background-color: grey;
+}
+
+.hit {
+  background-image: url('http://i2.cdn.turner.com/cnnnext/dam/assets/140621143519-17-million-yacht-goes-up-in-flames-00003817-topics.jpg');
+}
+
+.unsunken {
+  background-image: url('http://www.animatedimages.org/data/media/271/animated-ship-image-0124.gif');
+}
+
+#torpedoesLeft {
+  color:red;
+}
