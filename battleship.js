@@ -253,6 +253,67 @@ for (var i = 0; i < 5; i++) {
   // alert(shipLocations);
 } // end for loop
 
+//randomly choose orientation of ship
+function isHorizontal(){
+  return Math.floor(Math.random()*10) > 4;
+}
+
+function checkHorizontalLength(rowIndex, columnIndex, lengthOfShip){
+  for(var f = 0; f < lengthOfShip; f++) {
+    if (board[rowIndex][columnIndex] === SHIP) {
+      return false;
+    }
+    columnIndex++;   
+  }
+  return true;
+}
+
+function checkVerticalLength(rowIndex, columnIndex, lengthOfShip){
+  for(var g = 0; g < lengthOfShip; g++) {
+    if (board[rowIndex][columnIndex] === SHIP) {
+      return false;
+    }
+    rowIndex++;   
+  }
+  return true;
+}
+
+function isPlaceableByLengthOrientation(rowIndex, columnIndex, lengthOfShip, orientation) {
+  if (orientation) {
+    return columnIndex + lengthOfShip <= 10 && board[rowIndex][columnIndex] != SHIP && checkHorizontalLength(rowIndex, columnIndex, lengthOfShip);  
+  } else {
+    return rowIndex + lengthOfShip <= 10 && board[rowIndex][columnIndex] != SHIP && checkVerticalLength(rowIndex, columnIndex, lengthOfShip);
+  }
+}
+
+//Purpose: creates coordinates of entire ship
+//Signature: receives a number that represents ship length, returns array of coordinates that represent the ship
+function createShip(lengthOfShip) {
+  var shipCoordinates = [];
+  var c;
+  var d;
+  var orientation = isHorizontal();
+  console.log(orientation)
+  do {
+    //generates the coordinates of ship
+    c = Math.floor(Math.random()*10);
+    d = Math.floor(Math.random()*10);
+    console.log("ship at: " + c + d);
+    //regenerate first coordinates of ship if they are invalid coordinates 
+  } while (board[c][d] === SHIP || checkVertically(c,d) || checkHorizontally(c,d) || checkDiagonally(c,d) || !isPlaceableByLengthOrientation(c,d,lengthOfShip, orientation));
+  shipCoordinates.push("" + c + d);
+  console.log(shipCoordinates)   
+  for (var k = 0; k < lengthOfShip - 1; k++) {
+    if (orientation) {
+      d++;
+    } else {
+      c++;
+    }
+    shipCoordinates.push("" + c + d);  
+  } 
+  console.log(shipCoordinates);
+}
+
 $(document).ready( function() {
   // begin table creation
   for(var i = 0; i < 10; i++) { //while i is less than 10
