@@ -31,7 +31,8 @@ function revealShips(id) {
   }
 }
 
-//checks to see if there is a ship above or below
+// Purpose: checks to see if there is a ship above or below
+// Signature: receives two indeces; returns true if there is an adjacent ship, false if there are no adjacent ships
 function checkVertically(rowIndex,columnIndex) {
   //if row index is 1-8
   if(rowIndex > 0 && rowIndex < 9) {
@@ -73,7 +74,7 @@ function checkVertically(rowIndex,columnIndex) {
 };//end of function
 
 // Purpose: checks to see if there is a ship left or right of a location
-// Signature: receives rowIndex and columnIndex;returns true if there is ship too close
+// Signature: receives rowIndex and columnIndex;returns true if there is adjacent
 function checkHorizontally(rowIndex, columnIndex) {
   //if column index is 1-8
   if(columnIndex > 0 && columnIndex < 9) {
@@ -231,37 +232,37 @@ function checkDiagonally(rowIndex,columnIndex) {
 
 
 //generates location of five ships; begin for-loop
-for (var i = 0; i < 5; i++) {
-  var a, b;
-  do {
-    //generates the coordinates of ship
-    a = Math.floor(Math.random()*10);
-    b = Math.floor(Math.random()*10);
-    console.log("ship at: " + a + b);
-    //continue to generate coordinates for ship while the already-generated coordinates are the location of a ship
-    //TODO add  || checkAdjacentShips(a,b) into condition when function is done
-    // checkAdjacentShips(a,b));
-  } while (board[a][b] === SHIP || checkVertically(a,b) || checkHorizontally(a,b) || checkDiagonally(a,b));
-  //end of do-while loop
-
-  //places a ship where there is no ship
-  board[a][b] = SHIP;
-  //saves ship locations into an array used to reveal unsunken ships
-  shipLocations[shipLocations.length] = "" + a + b;
-  // alert(shipLocations);
-} // end for loop
+// for (var i = 0; i < 5; i++) {
+//   var a, b;
+//   do {
+//     //generates the coordinates of ship
+//     a = Math.floor(Math.random()*10);
+//     b = Math.floor(Math.random()*10);
+//     console.log("ship at: " + a + b);
+//     //continue to generate coordinates for ship while the already-generated coordinates are the location of a ship
+//     //TODO add  || checkAdjacentShips(a,b) into condition when function is done
+//     // checkAdjacentShips(a,b));
+//   } while (board[a][b] === SHIP || checkVertically(a,b) || checkHorizontally(a,b) || checkDiagonally(a,b));
+//   //end of do-while loop
+//
+//   //places a ship where there is no ship
+//   board[a][b] = SHIP;
+//   //saves ship locations into an array used to reveal unsunken ships
+//   shipLocations[shipLocations.length] = "" + a + b;
+//   // alert(shipLocations);
+// } // end for loop
 
 //generates location of five ships; begin for-loop
-  // shipLocations.push(createShip(5));
-  // shipLocations.push(createShip(4));
-  // shipLocations.push(createShip(4));
-  // shipLocations.push(createShip(3));
-  // shipLocations.push(createShip(3));
-  // shipLocations.push(createShip(2));
-  // shipLocations.push(createShip(2));
-  // shipLocations.push(createShip(1));
-  //
-  // console.log(shipLocations)
+  shipLocations.push(createShip(5));
+  shipLocations.push(createShip(4));
+  shipLocations.push(createShip(4));
+  shipLocations.push(createShip(3));
+  shipLocations.push(createShip(3));
+  shipLocations.push(createShip(2));
+  shipLocations.push(createShip(2));
+  shipLocations.push(createShip(1));
+
+  console.log(shipLocations)
   // shipLocations = [].concat.apply([], shipLocations);
   // shipLocations.forEach(placeShip);
 
@@ -274,9 +275,11 @@ function isHorizontal(){
   return Math.floor(Math.random()*10) > 4;
 }
 
+// Purpose: checks to see if there is a ship above or below or along ship path
+// Signature: receives two indeces; returns true if there is an adjacent ship, false if there are no adjacent ships
 function checkHorizontalLength(rowIndex, columnIndex, lengthOfShip){
   for(var f = 0; f < lengthOfShip; f++) {
-    if (board[rowIndex][columnIndex] === SHIP) {
+    if (board[rowIndex][columnIndex] === SHIP && checkHorizontally(rowIndex, columnIndex) && checkVertically(rowIndex, columnIndex) && checkDiagonally(rowIndex,columnIndex)) {
       return false;
     }
     columnIndex++;
@@ -284,9 +287,11 @@ function checkHorizontalLength(rowIndex, columnIndex, lengthOfShip){
   return true;
 }
 
+// Purpose: checks to see if there is a ship left or right or along ship path
+// Signature: receives two indeces; returns true if there is an adjacent ship, false if there are no adjacent ships
 function checkVerticalLength(rowIndex, columnIndex, lengthOfShip){
   for(var g = 0; g < lengthOfShip; g++) {
-    if (board[rowIndex][columnIndex] === SHIP) {
+    if (board[rowIndex][columnIndex] === SHIP && checkHorizontally(rowIndex, columnIndex) && checkVertically(rowIndex, columnIndex) && checkDiagonally(rowIndex,columnIndex)) {
       return false;
     }
     rowIndex++;
@@ -305,7 +310,7 @@ function isPlaceableByLengthOrientation(rowIndex, columnIndex, lengthOfShip, ori
 //Purpose: creates coordinates of entire ship
 //Signature: receives a number that represents ship length, returns array of coordinates that represent the ship
 function createShip(lengthOfShip) {
-  var shipCoordinates = [];
+  // var shipCoordinates = [];
   var c, d;
   var orientation = isHorizontal();
   console.log("isHorizontal: " + orientation);
@@ -316,17 +321,22 @@ function createShip(lengthOfShip) {
     console.log("ship at: " + c + d);
     //regenerate first coordinates of ship if they are invalid coordinates
   } while (board[c][d] === SHIP || checkVertically(c,d) || checkHorizontally(c,d) || checkDiagonally(c,d) || !isPlaceableByLengthOrientation(c,d,lengthOfShip, orientation));
-  shipCoordinates.push("" + c + d);
+  shipLocations.push("" + c + d);
+  // shipCoordinates.push("" + c + d);
   for (var k = 0; k < lengthOfShip - 1; k++) {
     if (orientation) {
       d++;
     } else {
       c++;
     }
-    shipCoordinates.push("" + c + d);
+    console.log("" + c + d);
+    shipLocations.push("" + c + d);
+    board[c][d] = SHIP;
+
+    // shipCoordinates.push("" + c + d);
   }
-  console.log(shipCoordinates);
-  return shipCoordinates;
+  console.log(shipLocations);
+  // return shipCoordinates;
 }
 
 $(document).ready( function() {
