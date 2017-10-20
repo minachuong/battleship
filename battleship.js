@@ -96,11 +96,11 @@ function checkHorizontally(rowIndex, columnIndex) {
   if(columnIndex === 0) {
     //check the right has a ship
     if(board[rowIndex][1] === 0) {
-      console.log("There is a ship left or right " + rowIndex + "0");
+      console.log("There is a ship left or right " + rowIndex + columnIndex);
       return true;
     }
     else {
-      console.log("There are no adjacent ships left or right " + rowIndex + "0");
+      console.log("There are no adjacent ships left or right " + rowIndex + columnIndex);
       return false;
     }//end of if
   };//end of if
@@ -109,11 +109,11 @@ function checkHorizontally(rowIndex, columnIndex) {
   if(columnIndex === 9) {
     //check the left has a ship
     if(board[rowIndex][8] === 0) {
-      console.log("There is a ship left or right " + rowIndex + "9");
+      console.log("There is a ship left or right " + rowIndex + columnIndex);
       return true;
     }
     else {
-      console.log("There are no adjacent ships left or right " + rowIndex + "9");
+      console.log("There are no adjacent ships left or right " + rowIndex + columnIndex);
       return false;
     }//end of if
   };//end of if
@@ -175,7 +175,7 @@ function checkDiagonally(rowIndex,columnIndex) {
   //if column index is 9, check left above or left below
   if(columnIndex === 9 && rowIndex != 0 && rowIndex != 9) {
     if(board[rowIndex - 1][columnIndex - 1] === 0 || board[rowIndex + 1][columnIndex - 1] === 0) {
-     console.log("There is a ship left above or left below *3");
+     console.log("There is a ship left above or left below " + rowIndex + columnIndex);
       return true;
     }
     else {
@@ -219,11 +219,11 @@ function checkDiagonally(rowIndex,columnIndex) {
   //check bottom left position
   if(columnIndex === 0 && rowIndex === 9) {
     if(board[rowIndex - 1][columnIndex + 1] === 0) {
-     console.log("There is a ship adjacent");
+     console.log("There is a ship adjacent " + rowIndex + columnIndex);
       return true;
     }
     else {
-     console.log("There are no adjacent ship");
+     console.log("There are no adjacent ship " + rowIndex + columnIndex);
       return false;
     }//end of if
   };//end of if
@@ -294,6 +294,7 @@ $(document).ready( function() {
         //alert("You have used all your torpedoes. You LOSE.");
         //iterates through array to add class="unsunken"
         shipLocations.forEach(revealShips);
+        $("td").off("click");
       };
     } else {
       //determine if square has already been clicked. no torpedo used.
