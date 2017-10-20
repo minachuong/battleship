@@ -37,11 +37,11 @@ function checkVertically(rowIndex,columnIndex) {
   if(rowIndex > 0 && rowIndex < 9) {
     //check above or below has a ship
     if(board[rowIndex + 1][columnIndex] === 0 || board[rowIndex - 1][columnIndex] === 0) {
-      console.log("There is a ship above or below. *1");
+      console.log("There is a ship above or below " + rowIndex + columnIndex);
       return true;
     }//end of if
     else {
-      console.log("There are NOOOOO adjacent ships above or below *1");
+      console.log("There are no adjacent ships above or below " + rowIndex + columnIndex);
       return false;
     }
   };//end of if
@@ -50,11 +50,11 @@ function checkVertically(rowIndex,columnIndex) {
   if(rowIndex === 0) {
     //check below has a ship
     if(board[1][columnIndex] === 0) {
-      console.log("There is a ship below. *2");
+      console.log("There is a ship below " + rowIndex + columnIndex);
       return true;
     }
     else {
-      console.log("There are NOOOOO adjacent ships below *2");
+      console.log("There are no adjacent ships below " + rowIndex + columnIndex);
       return false;
     }//end of if
   };//end of if
@@ -62,18 +62,18 @@ function checkVertically(rowIndex,columnIndex) {
   //check above has a ship
   if(rowIndex === 9) {
     if(board[8][columnIndex] === 0) {
-      console.log("There is a ship above*3");
+      console.log("There is a ship above " + rowIndex + columnIndex);
       return true;
     }
     else {
-      console.log("There are NOOOOO adjacent ships above  *3");
+      console.log("There are no adjacent ships above " + rowIndex + columnIndex);
       return false;
     }//end of if
   };//end of if
 };//end of function
 
-// Purpose: checks to see if there is a ship left or right
-// Function: returns true if there is ship too close
+// Purpose: checks to see if there is a ship left or right of a location
+// Signature: receives rowIndex and columnIndex;returns true if there is ship too close
 function checkHorizontally(rowIndex, columnIndex) {
   //if column index is 1-8
   if(columnIndex > 0 && columnIndex < 9) {
@@ -83,11 +83,11 @@ function checkHorizontally(rowIndex, columnIndex) {
 
 
     if(board[rowIndex][columnIndex + 1] === 0 || board[rowIndex][columnIndex - 1] === 0) {
-      console.log("There is a ship left or right. *1");
+      console.log("There is a ship left or right " + rowIndex + columnIndex);
       return true;
     }//end of if
     else {
-      console.log("There are NOOOOO adjacent ships left or right *1");
+      console.log("There are no adjacent ships left or right " + rowIndex + columnIndex);
       return false;
     }
   };//end of if
@@ -96,11 +96,11 @@ function checkHorizontally(rowIndex, columnIndex) {
   if(columnIndex === 0) {
     //check the right has a ship
     if(board[rowIndex][1] === 0) {
-      console.log("There is a ship left or right. *2");
+      console.log("There is a ship left or right " + rowIndex + "0");
       return true;
     }
     else {
-      console.log("There are NOOOOO adjacent ships left or right *2");
+      console.log("There are no adjacent ships left or right " + rowIndex + "0");
       return false;
     }//end of if
   };//end of if
@@ -109,11 +109,11 @@ function checkHorizontally(rowIndex, columnIndex) {
   if(columnIndex === 9) {
     //check the left has a ship
     if(board[rowIndex][8] === 0) {
-      console.log("There is a ship left or right. *3");
+      console.log("There is a ship left or right " + rowIndex + "9");
       return true;
     }
     else {
-      console.log("There are NOOOOO adjacent ships left or right *3");
+      console.log("There are no adjacent ships left or right " + rowIndex + "9");
       return false;
     }//end of if
   };//end of if
@@ -125,11 +125,11 @@ function checkDiagonally(rowIndex,columnIndex) {
   if(rowIndex > 0 && rowIndex < 9 && columnIndex > 0 && columnIndex < 9) {
     //check above or below has a ship
     if(board[rowIndex - 1][columnIndex - 1] === 0 || board[rowIndex + 1][columnIndex - 1 ] === 0 || board[rowIndex - 1][columnIndex + 1] === 0 || board[rowIndex + 1][columnIndex + 1] === 0) {
-     console.log("There is a ship above left or or above right or below right or below left. *1");
+     console.log("There is a ship above left or or above right or below right or below left " + rowIndex + columnIndex);
       return true;
     }//end of if
     else {
-     console.log("There are NOOOOO adjacent ships diagonally *1");
+     console.log("There are no adjacent ships diagonally " + rowIndex + columnIndex);
       return false;
     }
   };//end of if
@@ -138,11 +138,11 @@ function checkDiagonally(rowIndex,columnIndex) {
   if(rowIndex === 0 && columnIndex != 0 && columnIndex != 9) {
     //check below has a ship
     if(board[rowIndex + 1][columnIndex - 1] === 0 || board[rowIndex + 1][columnIndex + 1] === 0) {
-     console.log("There is a ship below left or below right. *2");
+     console.log("There is a ship below left or below right " + rowIndex + columnIndex);
       return true;
     }
     else {
-     console.log("There are NOOOOO adjacent ships below *2");
+     console.log("There are no adjacent ships below " + rowIndex + columnIndex);
       return false;
     }//end of if
   };//end of if
@@ -150,11 +150,11 @@ function checkDiagonally(rowIndex,columnIndex) {
   //if row index is 9, check above left and above right
   if(rowIndex === 9 && columnIndex != 0 && columnIndex != 9) {
     if(board[rowIndex - 1][columnIndex - 1] === 0 || board[rowIndex - 1][columnIndex + 1] === 0) {
-     console.log("There is a ship above left or above right*3");
+     console.log("There is a ship above left or above right " + rowIndex + columnIndex);
       return true;
     }
     else {
-     console.log("There are NOOOOO adjacent ships above  *3");
+     console.log("There are no adjacent ships above " + rowIndex + columnIndex);
       return false;
     }//end of if
   };//end of if
@@ -163,11 +163,11 @@ function checkDiagonally(rowIndex,columnIndex) {
   if(columnIndex === 0 && rowIndex != 0 && rowIndex != 9) {
     //check right has a ship
     if(board[rowIndex - 1][columnIndex + 1] === 0 || board[rowIndex + 1][columnIndex + 1] === 0) {
-     console.log("There is a ship right above or right below. *2");
+     console.log("There is a ship right above or right below " + rowIndex + columnIndex);
       return true;
     }
     else {
-     console.log("There are NOOOOO adjacent ships below *2");
+     console.log("There are no adjacent ships below " + rowIndex + columnIndex);
       return false;
     }//end of if
   };//end of if
@@ -179,40 +179,40 @@ function checkDiagonally(rowIndex,columnIndex) {
       return true;
     }
     else {
-     console.log("There are NOOOOO adjacent ships above  *3");
+     console.log("There are no adjacent ships above " + rowIndex + columnIndex);
       return false;
     }//end of if
   };//end of if
   //check top left position
   if(columnIndex === 0 && rowIndex === 0) {
     if(board[rowIndex + 1][columnIndex + 1] === 0) {
-     console.log("There is a ship lower right");
+     console.log("There is a ship lower right " + rowIndex + columnIndex);
       return true;
     }
     else {
-     console.log("There are NOOOOO adjacent ship");
+     console.log("There are no adjacent ship " + rowIndex + columnIndex);
       return false;
     }//end of if
   };//end of if
   //check top right position
   if(columnIndex === 9 && rowIndex === 0) {
     if(board[rowIndex + 1][columnIndex - 1] === 0) {
-     console.log("There is a ship lower left");
+     console.log("There is a ship lower left " + rowIndex + columnIndex);
       return true;
     }
     else {
-     console.log("There are NOOOOO adjacent ship");
+     console.log("There are no adjacent ship " + rowIndex + columnIndex);
       return false;
     }//end of if
   };//end of if
   //check bottom right position
   if(columnIndex === 9 && rowIndex === 9) {
     if(board[rowIndex - 1][columnIndex - 1] === 0) {
-     console.log("There is a ship adjacent");
+     console.log("There is a ship adjacent " + rowIndex + columnIndex);
       return true;
     }
     else {
-     console.log("There are NOOOOO adjacent ship");
+     console.log("There are no adjacent ship " + rowIndex + columnIndex);
       return false;
     }//end of if
   };//end of if
@@ -223,7 +223,7 @@ function checkDiagonally(rowIndex,columnIndex) {
       return true;
     }
     else {
-     console.log("There are NOOOOO adjacent ship");
+     console.log("There are no adjacent ship");
       return false;
     }//end of if
   };//end of if
@@ -254,15 +254,14 @@ for (var i = 0; i < 5; i++) {
 } // end for loop
 
 $(document).ready( function() {
-
   // begin table creation
   for(var i = 0; i < 10; i++) { //while i is less than 10
      //create a table row in tbody
-    var newTableRow = $("tbody").append("<tr></tr>");
+    $("tbody").append("<tr id='" + i + "'></tr>");
     //while j is less than 10
     for(var j = 0; j < 10; j++) {
       //create a table data in table rows
-      newTableRow.append('<td id="' + i + j + '">' + i + j + '</td>');
+      $('<td id="' + i + j + '">' + i + j + '</td>').appendTo('#'+i);
     }; // end of inner for loop
   };// end table creation
 
