@@ -298,7 +298,7 @@ $(document).ready( function() {
       };
     } else {
       //determine if square has already been clicked. no torpedo used.
-      if((board[x][y] === HIT || board[x][y] === MISS) && torpedoesUsed < 25){
+      if((board[x][y] === HIT || board[x][y] === MISS) && torpedoesUsed < 25 && hits != 5){
         alert("You have already torpedoed this location. Please try again.");
       } else {
         //if there is a ship
