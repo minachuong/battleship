@@ -10,6 +10,12 @@ Upon cloning this repository, you can open the `battleship.html` file in a brows
 
 You'll notice a unit-test file. Ignore it.
 
+## Known Bugs
+
+- When placing ships with lengths greater than one, ships tend to overlap.
+
+- When placing ships with lengths greater than one, ships tend to still be place adjacently.
+
 ## Contributing
 
 Please feel free to contribute. Create a fork of this project. Create a branch on your local machine. 
